@@ -1,12 +1,6 @@
-import math
-from numpy import *
-import numpy
+import matplotlib.pyplot as plt
+import numpy as np
 
-array1 = full((5,5),2)
-array2 = full((5,5),3)
-
-array1 = array2.copy()
-array2[2,2]= 66
-array1[3,3] = 44
-print(array1)
-print(array2)
+a = np.random.random((16, 16))
+plt.imshow(a, cmap='hot', interpolation='nearest')
+plt.show()

@@ -4,7 +4,8 @@ import numpy as np
 
 nMax = 50;maxIter = 20000;xStep = 0.4;tStep = 0.1;a=0.1;M=0.1;k=0.01
 phiOld = np.random.random((nMax,nMax))
-#phiOld = phiOld + 0.5
+phiOld = (phiOld * 0.1)
+phiOld = (phiOld + 0.5)
 phiNew = np.full((nMax, nMax), 0)
 mu = np.full((nMax, nMax), 0)
 fig = plt.figure()
@@ -30,3 +31,4 @@ for iter in range(maxIter):
     if iter % 100 == 0:
         im.set_array(phiOld)
         fig.canvas.draw()
+        print(iter/10)
