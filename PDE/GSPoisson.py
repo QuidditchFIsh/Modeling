@@ -1,8 +1,7 @@
-import matplotlib.pyplot as plt
 import numpy as np
 
 nMax = 50
-maxIter = 1000
+maxIter = 500
 print('Running GSPoisson')
 phiOld = np.full((nMax, nMax, nMax), 0)
 rho = np.full((nMax, nMax, nMax), 0)
@@ -10,6 +9,7 @@ accuracy =0
 temp =0
 file = open("GS1",'w')
 file1 = open('GSAccuracy','w')
+file2 = open("eField",'w')
 
 for i in range(-1, 1):
     for j in range(-1, 1):
@@ -35,3 +35,13 @@ for i in range(1, nMax - 1):
         for k in range(1, nMax - 1):
             file.write(str(i) + " " + str(j) + " " + str(k) + " " + str(phiOld[i, j, k]) + "\n")
     file.write("\n")
+
+#now tunrn into the electric field and its vecotrs
+
+eFieldx,eFieldy,eFieldz = np.gradient(phiOld)
+
+for i in range(1, nMax - 1):
+    for j in range(1, nMax - 1):
+        for k in range(1, nMax - 1):
+            file2.write(str(i) + " " + str(j) + " " + str(k) + " " + str(eFieldx[i]) + " "+ str(eFieldy[j]) + " "+ str(eFieldz[k]) + "\n ")
+    file2.write("\n")

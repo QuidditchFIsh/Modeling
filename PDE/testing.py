@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-a = np.random.random((16, 16))
-plt.imshow(a, cmap='hot', interpolation='nearest')
-plt.show()
+test = np.full((5,5),9)
+test3,test2 = np.gradient(test)
+print(test2)
