@@ -1,6 +1,7 @@
 import numpy as np
+import math
 
-nMax = 50
+nMax = 26
 maxIter = 500
 print('Running GSPoisson')
 phiOld = np.full((nMax, nMax, nMax), 0)
@@ -14,7 +15,7 @@ file2 = open("eField",'w')
 for i in range(-1, 1):
     for j in range(-1, 1):
         for k in range(-1, 1):
-            rho[(nMax / 2) + i, (nMax / 2) + j, (nMax / 2) + k] = 1
+            rho[(nMax / 2) + i, (nMax / 2) + j, (nMax / 2) + k] = -10
             print(str((nMax / 2) + i)+" " + str((nMax / 2) + j) + " "+str((nMax / 2) + k) +"\n")
 
 for iter in range(0, maxIter):
@@ -43,5 +44,6 @@ eFieldx,eFieldy,eFieldz = np.gradient(phiOld)
 for i in range(1, nMax - 1):
     for j in range(1, nMax - 1):
         for k in range(1, nMax - 1):
-            file2.write(str(i) + " " + str(j) + " " + str(k) + " " + str(eFieldx[i]) + " "+ str(eFieldy[j]) + " "+ str(eFieldz[k]) + "\n ")
+            len = math.sqrt((i-eFieldx[i,j,k])**2+(j-eFieldy[i,j,k])**2+(k-eFieldz[i,j,k])**"")
+            file2.write(str(i) + " " + str(j) + " " + str(k) + " " + str(eFieldx[i,j,k]/len) + " "+ str(eFieldy[i,j,k]/len) + " "+ str(eFieldz[i,j,k]/len) + "\n ")
     file2.write("\n")
