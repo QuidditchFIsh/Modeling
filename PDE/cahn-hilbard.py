@@ -2,9 +2,10 @@ import matplotlib.pyplot as plt
 from numpy import *;
 import numpy as np
 
-nMax = 50;maxIter = 20000;xStep = 0.4;tStep = 0.1;a=0.1;M=0.1;k=0.01
+nMax = 50;maxIter = 20000;xStep = 0.4;tStep = 0.2;a=0.1;M=0.1;k=0.01
 phiOld = np.random.random((nMax,nMax))
-phiOld = (phiOld * 0.1)
+print(phiOld)
+phiOld = (phiOld * 0.001)
 phiOld = (phiOld + 0.5)
 phiNew = np.full((nMax, nMax), 0)
 mu = np.full((nMax, nMax), 0)
