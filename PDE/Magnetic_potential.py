@@ -1,7 +1,7 @@
 import numpy as np
 import math
 
-nMax = 30
+nMax = 20
 maxIter = 500
 magPotential = np.full((nMax, nMax, nMax), 0)
 b_field = np.full((nMax, nMax, nMax), 0)
@@ -9,14 +9,17 @@ wire = np.full((nMax, nMax, nMax), 0)
 file_vector_field = open('magnetic_result', 'w')
 file_accuracy = open('magnetic_Accuracy', 'w')
 file_field = open('magnetic_field', 'w')
+iter =0
+accuracy=1
 
 for i in range(-2, 2):
     for j in range(-2, 2):
         for k in range(0, nMax):
             wire[(nMax / 2) + i, (nMax / 2) + j, k] = 10
 
-for iter in range(0, maxIter):
+while accuracy > 0.01:
     accuracy = 0
+    iter += 1
     for i in range(1, nMax - 1):
         for j in range(1, nMax - 1):
             for k in range(1, nMax - 1):
@@ -25,8 +28,7 @@ for iter in range(0, maxIter):
                 magPotential[i + 1, j, k] + magPotential[i - 1, j, k] + magPotential[i, j + 1, k] + magPotential[
                     i, j - 1, k] + magPotential[i, j, k + 1] + magPotential[i, j, k - 1] + wire[i, j, k])
                 accuracy += abs(magPotential[i, j, k] - temp)
-        file_accuracy.write(str(iter) + " " + str(accuracy) + "\n")
-    accuracy = 0
+    file_accuracy.write(str(iter) + " " + str(accuracy) + "\n")
     if iter % 10 == 0:
         print(iter / 10)
 
