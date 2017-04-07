@@ -1,11 +1,11 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-nMax = 50;maxIter = 10000;xStep = 0.5;tStep = 1;a=0.1;M=0.1;k=0.01;time=0
-phiOld = np.random.random((nMax, nMax))
-phiOld = (phiOld * 0.01)
-phiOld = (phiOld + 0.5)
+nMax = 50;maxIter = 20000;xStep = 0.4;tStep = 0.2;a=0.1;M=0.1;k=0.01
+phiOld = np.random.random((nMax,nMax))
 #print(phiOld)
+phiOld = (phiOld * 0.001)
+phiOld = (phiOld + 0.5)
 freeEnergyDensity =0
 phiNew = np.full((nMax, nMax), 0)
 mu = np.full((nMax, nMax), 0)
@@ -13,8 +13,9 @@ fig = plt.figure()
 ax = fig.add_subplot(111)
 im = ax.imshow(phiOld, cmap='hot', interpolation='nearest')
 plt.show(block=False)
+time =0
 
-file = open("test2",'w')
+file = open("cahn_hillard_free_energy",'w')
 
 for i in range(0, nMax):
     for j in range(0, nMax):
@@ -45,4 +46,4 @@ for iter in range(maxIter):
     if iter % 100 == 0:
         im.set_array(phiOld)
         fig.canvas.draw()
-        print(iter / 50)
+        print(iter / 100)
